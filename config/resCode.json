@@ -1,0 +1,7 @@
+{
+    "create user fail"  : -2 ,
+    "svr err"           : -1 ,
+    "result success"    : 0 ,
+    "user not exists"   : 1
+
+}

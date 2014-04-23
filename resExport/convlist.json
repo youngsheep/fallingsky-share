@@ -1,0 +1,13 @@
+{
+    "server": {
+        "test" : {
+            "xlsx" : "test.xlsx",
+            "sheet" : "test",
+            "meta" : "test.json",
+            "res"  : "res_test.json"
+        }
+    },
+
+    "client": {
+    }
+}
