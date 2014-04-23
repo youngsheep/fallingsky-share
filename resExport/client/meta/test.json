@@ -1,0 +1,17 @@
+{
+    "entry" : {
+        "id":"Number",
+        "desc":"String"
+    },
+
+    "proto" : {
+        "message Entry" : {
+            "required sInt32 id" : 1,
+            "required string desc" : 2
+        } , 
+
+        "test" : {
+            "repeated Entry test" : 1
+        }
+    }
+}
