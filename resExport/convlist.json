@@ -4,6 +4,6 @@
     },
 
     "client": {
-        "test" : {"xlsx" : "test.xlsx", "sheet" : "test", "meta" : "test.json", "res"  : "res_test.bin", "proto" : "test"}        
+        "test" : {"xlsx" : "test.xlsx", "sheet" : "test", "meta" : "test.json", "res"  : "res_test.bin", "proto" : "test", "key" : "id"}        
     }
 }

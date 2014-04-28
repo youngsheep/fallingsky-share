@@ -40,10 +40,10 @@ var filterData = function (data,meta){
     for(var i = 1; i < data.length; i++){
         var row = {};
         Object.keys(cols).forEach(function(ck){
-            if(meta[ck] == 'Number'){
+            if(meta[ck] == 'sInt32'){
                 row[ck] = Number(data[i][cols[ck]].value);
             }
-            else if(meta[ck] == 'String'){
+            else if(meta[ck] == 'string'){
                 row[ck] = String(data[i][cols[ck]].value);
             }
             else{
@@ -99,27 +99,41 @@ var ClientExport = function(key){
             console.error('sheet in file not found');
             return;
         }
-        var meta = require('./client/meta/'+convparam.meta);
+        var proto = require('./client/meta/'+convparam.meta);
         //console.log(meta);
 
-        var realdata = filterData(data,meta.entry);
-        console.log(realdata);
+        var genSource = require('./client/genSource');
+        var entryMeta = genSource.convertMeta(proto);
+
+
+        var realdata = filterData(data,entryMeta);
+        //console.log(realdata);
     
         var protobuf = require('pomelo-protobuf');
-        var resProto = protobuf.parse(meta.proto);
-        console.log(resProto);
+        var resProto = protobuf.parse(proto);
+
+        genSource.generate(convparam.proto,convparam.key,entryMeta,resProto);        
+        //console.log(resProto);
+        
+        var protoStream = fs.createWriteStream('./client/res/'+convparam.proto+'.proto',wOption);
+        protoStream.on("error", function(err) { 
+            console.error("Server Export write file error!");
+            console.error(err);
+        }); 
+        protoStream.write(new Buffer(JSON.stringify(resProto)));
+
         protobuf.init({encoderProtos:resProto, decoderProtos:resProto});
         var encode = {};
         encode[convparam.proto] = realdata;
         var buf = protobuf.encode(convparam.proto,encode);
-        console.log(buf);
+        //console.log(buf);
 
-        var fileWriteStream = fs.createWriteStream('./client/res/'+convparam.res,wOption);
-        fileWriteStream.on("error", function(err) { 
+        var resStream = fs.createWriteStream('./client/res/'+convparam.res,wOption);
+        resStream.on("error", function(err) { 
             console.error("Server Export write file error!");
             console.error(err);
         }); 
-        fileWriteStream.write(buf);
+        resStream.write(buf);
 
         var dec = protobuf.decode("test",buf);
         console.log("decode:");

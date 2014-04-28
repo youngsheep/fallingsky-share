@@ -1,0 +1,15 @@
+#include "${NAME}ConfigHolder.h"
+#include "common/jansson.hpp"
+
+const char* ${NAME}_PROTO = "${PROTO}";
+
+${NAME}ConfigHolder::${NAME}ConfigHolder()
+    : ConfigHolder<${NAME}Config,int>("${NAME}",${NAME}_PROTO)
+{}
+
+int ${NAME}ConfigHolder::ParseEntity(${NAME}Config& enti,const json::Value jsonEntity) 
+{
+    ${FILED_PARSER}         
+    return 0;
+}
+

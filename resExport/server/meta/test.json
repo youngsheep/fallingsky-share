@@ -1,5 +1,5 @@
 {
-    "id" : "Number",
-    "type" : "Number" , 
-    "value" : "Number"
+    "id" : "sInt32",
+    "type" : "sInt32" , 
+    "value" : "sInt32"
 }

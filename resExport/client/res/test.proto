@@ -1,0 +1,1 @@
+{"message Entry":{"id":{"option":"required","type":"sInt32","tag":1},"desc":{"option":"required","type":"string","tag":2},"__messages":{},"__tags":{"1":"id","2":"desc"}},"test":{"test":{"option":"repeated","type":"Entry","tag":1},"__messages":{},"__tags":{"1":"test"}}}

@@ -1,0 +1,22 @@
+#ifndef _FALLING_SKY_CONFIG_DATA_${NAME}_H_
+#define _FALLING_SKY_CONFIG_DATA_${NAME}_H_
+
+#include "config/ConfigHolder.h"
+
+struct ${NAME}Config
+{
+    ${FILED}
+};
+
+class ${NAME}ConfigHolder : public ConfigHolder<${NAME}Config,${KEY_TYPE}>
+{
+public:
+    ${NAME}ConfigHolder();
+    virtual ~${NAME}ConfigHolder(){}
+
+    virtual int ParseEntity(${NAME}Config& enti,const json::Value jsonEntity);
+    virtual int getKey(${NAME}Config& enti){return enti.${KEY_FIELD};}
+};
+
+#endif
+
